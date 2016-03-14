@@ -12,4 +12,9 @@ public class DestroyByBoundary : MonoBehaviour {
 	void Update () {
 	
 	}
+
+    void OnTriggerExit(Collider other)
+    {
+        Destroy(other.gameObject);
+    }
 }
