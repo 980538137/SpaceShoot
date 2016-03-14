@@ -5,6 +5,7 @@ public class DestroyByContact : MonoBehaviour {
 
     public GameObject explosion;
     public GameObject playerExplosion;
+
 	// Use this for initialization
 	void Start () {
 	
@@ -17,7 +18,7 @@ public class DestroyByContact : MonoBehaviour {
 
     void OnTriggerEnter(Collider other)
     {
-        if (other.tag == "Boundary")
+        if (other.tag == "Boundary" || other.tag == "Enemy")
         {
             return;
         }
@@ -30,7 +31,6 @@ public class DestroyByContact : MonoBehaviour {
         {
             Instantiate(playerExplosion, other.transform.position, transform.rotation);//在玩家飞机销毁的位置生成爆炸效果
         }
-        print("OnTriggerEnter");
         Destroy(other.gameObject);//销毁和小行星碰撞的物体
         Destroy(this.gameObject);//销毁小行星
     }
