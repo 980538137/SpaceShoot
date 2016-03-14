@@ -1,16 +1,18 @@
 ﻿using UnityEngine;
 using System.Collections;
 
+[System.Serializable]
+public class Boundary
+{
+    public float xMin;
+    public float xMax;
+    public float zMin;
+    public float zMax;
+}
+
 public class PlayerController : MonoBehaviour {
 
-    [System.Serializable]
-    public class Boundary
-    {
-        public float xMin;
-        public float xMax;
-        public float zMin;
-        public float zMax;
-    }
+    
     public float speed;
     public Boundary boundary;
 
