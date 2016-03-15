@@ -17,6 +17,9 @@ public class GameController : MonoBehaviour {
 
     private int score;
 
+    private bool gameOver;
+    private bool restart;
+
 	// Use this for initialization
 	void Start () {
         restartText.text = "";
@@ -30,7 +33,13 @@ public class GameController : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-        
+        if(restart)
+        {
+            if(Input.GetKeyDown(KeyCode.R))
+            {
+                Application.LoadLevel(Application.loadedLevel);//加载关卡
+            }
+        }
 	}
 
     IEnumerator SpawnWave()
@@ -47,6 +56,13 @@ public class GameController : MonoBehaviour {
             }
 
             yield return new WaitForSeconds(waveWait);
+
+            if (gameOver)
+            {
+                restartText.text = "Press 'R' For Restart";
+                restart = true;
+                break;
+            }
         }
         
     }
@@ -62,6 +78,12 @@ public class GameController : MonoBehaviour {
     void UpdateScore()
     {
         scoreText.text = "Score:" + score;
+    }
+
+    public void GameOver()
+    {
+        gameOverText.text = "Game Over!!!";
+        gameOver = true;
     }
 
 }

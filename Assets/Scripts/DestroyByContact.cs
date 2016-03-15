@@ -40,6 +40,7 @@ public class DestroyByContact : MonoBehaviour {
         if (other.tag == "Player")
         {
             Instantiate(playerExplosion, other.transform.position, transform.rotation);//在玩家飞机销毁的位置生成爆炸效果
+            gameController.GameOver();
         }
 
         gameController.AddScore(scoreValue);
