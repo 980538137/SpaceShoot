@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using UnityEngine.UI;
 
 public class GameController : MonoBehaviour {
     public GameObject[] hazards;//小行星数组
@@ -10,8 +11,20 @@ public class GameController : MonoBehaviour {
     public float startWait;
     public float waveWait;
 
+    public Text scoreText;
+    public Text restartText;
+    public Text gameOverText;
+
+    private int score;
+
 	// Use this for initialization
 	void Start () {
+        restartText.text = "";
+        gameOverText.text = "";
+
+        score = 0;
+        UpdateScore();
+
         StartCoroutine(SpawnWave());
 	}
 	
@@ -36,6 +49,19 @@ public class GameController : MonoBehaviour {
             yield return new WaitForSeconds(waveWait);
         }
         
+    }
+
+    //增加分数
+    public void AddScore(int newScoreValues)
+    {
+        score += newScoreValues;
+        UpdateScore();
+    }
+
+    //更新UI界面的积分显示
+    void UpdateScore()
+    {
+        scoreText.text = "Score:" + score;
     }
 
 }
